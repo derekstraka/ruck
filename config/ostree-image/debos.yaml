@@ -7,12 +7,12 @@
 {{- $repo := or .repo "ostree_repo" -}}
 {{- $size := or .size "20G" -}}
 
-architecture: {{ $architecture }}
+architecture: {{$architecture}}
 
 actions:
   - action: image-partition
-    imagename: {{ $image }}
-    imagesize: {{ $size }}
+    imagename: {{$image}}
+    imagesize: {{$size}}
     partitiontype: gpt
 
     mountpoints:
@@ -40,9 +40,9 @@ actions:
 
   - action: ostree-deploy
     repository: ostree_repo
-    branch: {{ $branch }}
+    branch: {{$branch}}
     os: debian
-    append-kernel-cmdline: {{ $cmdline }}
+    append-kernel-cmdline: {{$cmdline}}
 
   - action: run
     description: enable signature verification

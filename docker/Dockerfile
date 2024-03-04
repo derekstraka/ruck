@@ -1,7 +1,9 @@
 FROM debian:testing
 
+# Don't pin the packages versions to exact values
+# hadolint ignore=DL3008
 RUN apt-get update && \
-    apt-get install -y \
+    apt-get install -y --no-install-recommends \
         mmdebstrap \
 		systemd \
         systemd-boot \
@@ -13,7 +15,8 @@ RUN apt-get update && \
         python3-systemd \
         dosfstools \
         systemd-container \
-        git
+        git && \
+        rm -rf /var/lib/apt/lists/*
 
 COPY files/pip.conf /etc/pip.conf
 
